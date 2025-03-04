@@ -118,6 +118,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Для разработки Django будет обслуживать статические файлы
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Это для статических файлов на уровне проекта
+]
+
+# Путь для хранения собранных статических файлов (для продакшн-сервера)
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
