@@ -39,11 +39,11 @@
               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
-            <div class="carousel-inner">
+            <div class="carousel-inner h-50">
               <div class="carousel-item active">
                 <img src="{% static 'myapp\images\Сomputer_1.jpg' %}" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>Иновационные ПК</h5>
+                  <h5>Инновационные ПК</h5>
                   <p>Технологии, которые меняют правила игры, открывая новые горизонты возможностей.</p>
                 </div>
               </div>
@@ -71,7 +71,48 @@
               <span class="visually-hidden">Следующий</span>
             </button>
           </div>
-          
+
+
+          <!-- Контент -->
+          <div class="container text-center my-4">
+            <h2 class="fw-bold">Добро пожаловать в магазин комплектующих для ПК!</h2>
+            <p class="lead">У нас вы найдете всё необходимое для сборки мощного и надежного компьютера.</p>
+        </div>
+
+
+        <!-- Закрывашка -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+        <footer class="bg-dark text-light py-5">
+            <div class="container">
+                <div class="row">
+                    <!-- Колонка с контактами -->
+                    <div class="col-md-4 text-center">
+                        <h5>Контакты</h5>
+                        <p>г. Москва, ул. Компьютерная, 7</p>
+                        <p>+7 (999) 999-99-99</p>
+                        <p>✉ support@pc-shop.ru</p>
+                    </div>
+                    <!-- Колонка с полезными ссылками -->
+                    <div class="col-md-4 text-center">
+                        <h5>Полезные ссылки</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-light">Каталог</a></li>
+                            <li><a href="#" class="text-light">Доставка</a></li>
+                            <li><a href="#" class="text-light">Гарантия</a></li>
+                            <li><a href="#" class="text-light">Контакты</a></li>
+                        </ul>
+                    </div>
+                    <!-- Колонка с соцсетями -->
+                    <div class="col-md-4 text-center">
+                        <h5>Мы в соцсетях</h5>
+                        <a href="https://vk.com/epifanov_ilia" class="text-light me-3"><i class="fab fa-vk fa-2x"></i></a>
+                        <a href="https://t.me/Epifanov_Ilia" class="text-light me-3"><i class="fab fa-telegram fa-2x"></i></a>
+                    </div>
+                </div>
+                <hr class="bg-light">
+            </div>
+        </footer>
+        
 
   </body>
 </html>
