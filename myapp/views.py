@@ -110,5 +110,55 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-def section2(request):
-    return render(request, 'section2.html')
+
+
+def author(request):
+    # Данные о мне
+    author_info = {
+        "name": "Епифанов Илья Дмитриевич",
+        "photo": "\myapp\images\\author\Епифанов Илья аватарка.jpeg",
+        "email": "idepifanov@edu.hse.ru",
+        "phone": "+7 (926) 090-29-73"
+    }
+
+    # Данные о программе
+    program_info = {
+        "name": "Прикладная математика",
+        "description": "Программа направлена на подготовку специалистов, способных решать широкий спектр задач современной науки и техники, опираясь на самые современные достижения в области математики, физики, информационных технологий с использованием средств вычислительной техники."
+                        "Студенты получают знания в области технологий проектирования динамических систем; технологий обработки, передачи, хранения и защиты информации; технологий разработки и сопровождения специализированного программного обеспечения; технологий математического моделирования сложных физико-механических систем и процессов, включая наноструктуры и космические системы; технологий создания интеллектуальных информационных систем, систем навигации и управления.",
+        "supervisor": {
+            "name": "Преснова Анна Павловна",
+            "photo": "myapp\images\\author\Преснова Анна Павловна.jpeg",
+            "email": "apresnova@hse.ru"
+        },
+        "manager": {
+            "name": "Горшкова Альбина Вартановна",
+            "photo": "myapp\images\\author\Горшкова Альбина Вартановна.jpg",
+            "email": "agorshkova@hse.ru"
+        }
+    }
+
+    classmates = [
+        {
+            "name": "Сокурсник 1",
+            "photo": "myapp\images\\author\Адам Смит.png",
+            "email": "classmate1@edu.hse.ru",
+            "phone": "+7 (111) 111-11-11"
+        },
+        {
+            "name": "Сокурсник 2",
+            "photo": "myapp\images\\author\Адам Смит.png",
+            "email": "classmate2@edu.hse.ru",
+            "phone": "+7 (111) 111-11-12"
+        }
+    ]
+
+    context = {
+        'author_info': author_info,
+        'program_info': program_info,
+        'classmates': classmates
+    }
+    print("\n\n\\n\n #$%^&*()*&^%$#%^&*()*&^%$^&*()\n\n\n\n\n\n\n")
+    print(context["author_info"])
+
+    return render(request, 'author.html', context)

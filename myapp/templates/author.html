@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Автор | Магазин ПК-комплектующих{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <section class="container my-5">
+        <h2 class="text-center mb-4">Я и моя образовательная программа</h2>
+        <div class="row d-flex align-items-center">
+            <div class="col-md-6 text-center">
+                <img src="{% static author_info.photo %}" class="img-fluid rounded-circle mb-3" alt="{{ author_info.name }}">
+                <h5>{{ author_info.name }}</h5>
+                <p class="lead">Email: <a href="mailto:{{ author_info.email }}">{{ author_info.email }}</a></p>
+                <p class="lead">Телефон: {{ author_info.phone }}</p>
+            </div>
+            <div class="col-md-6" style="text-align: justify">
+                <h5>{{ program_info.name }}</h5>
+                <p class="lead">{{ program_info.description }}</p>
+            </div>
+        </div>
+    </section>
+
+<!-- Руководитель программы -->
+<section class="container my-5">
+    <h2 class="text-center mb-4">Руководитель программы</h2>
+    <div class="row d-flex align-items-center">
+        <div class="col-md-6 text-center">
+            <img src="{% static program_info.supervisor.photo %}" class="img-fluid rounded-circle mb-3" 
+                 alt="{{ program_info.supervisor.name }}" style="width: 400px; height: 400px; object-fit: cover;">
+            <h5>{{ program_info.supervisor.name }}</h5>
+            <p class="lead">Email: <a href="mailto:{{ program_info.supervisor.email }}">{{ program_info.supervisor.email }}</a></p>
+        </div>
+        <div class="col-md-6" style="text-align: justify;">
+            <p class="lead">Руководитель образовательной программы отвечает за стратегическое развитие, координацию и контроль качества учебного процесса.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Менеджер программы -->
+<section class="container my-5">
+    <h2 class="text-center mb-4">Менеджер программы</h2>
+    <div class="row d-flex align-items-center">
+        <div class="col-md-6 text-center">
+            <img src="{% static program_info.manager.photo %}" class="img-fluid rounded-circle mb-3" 
+                 alt="{{ program_info.manager.name }}" style="width: 400px; height: 400px; object-fit: cover;">
+            <h5>{{ program_info.manager.name }}</h5>
+            <p class="lead">Email: <a href="mailto:{{ program_info.manager.email }}">{{ program_info.manager.email }}</a></p>
+        </div>
+        <div class="col-md-6" style="text-align: justify;">
+            <p class="lead">Менеджер образовательной программы занимается организацией учебного процесса, взаимодействием с преподавателями и студентами, а также административными вопросами.</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- Сокурсники -->
+<section class="container my-5">
+    <h2 class="text-center mb-4">Мои сокурсники</h2>
+    <div class="row d-flex align-items-center">
+        {% for classmate in classmates %}
+        <div class="col-md-6 mb-4 text-center">
+            <img src="{% static classmate.photo %}" class="img-fluid rounded-circle mb-3" 
+                 alt="{{ classmate.name }}" style="width: 400px; height: 400px; object-fit: cover;">
+            <h5>{{ classmate.name }}</h5>
+            <p class="lead"><strong>Email:</strong> <a href="mailto:{{ classmate.email }}">{{ classmate.email }}</a></p>
+            <p class="lead"><strong>Телефон:</strong> <a href="tel:{{ classmate.phone }}">{{ classmate.phone }}</a></p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+
+
+</div>
+{% endblock %}
