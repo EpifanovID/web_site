@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Каталог товаров | Магазин ПК-комплектующих{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Каталог товаров</h2>
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{% static product.image %}" class="card-img-top" alt="{{ product.name }}">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="lead card-text">{{ product.price }} ₽</p>
+                    <a href="{% url 'product' product.name %}" class="lead btn btn-primary">Подробнее</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

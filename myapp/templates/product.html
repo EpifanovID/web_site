@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">{{ product.name }}</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{% static product.image %}" class="img-fluid w-100" style="object-fit: cover;" alt="{{ product.name }}">
+        </div>
+        <div class="col-md-6 d-flex flex-column justify-content-center">
+            <h3>{{ product.price }} ₽</h3>
+            <p class="lead">{{ product.description }}</p>
+            <!-- Можете добавить дополнительные данные о товаре -->
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mt-5 mb-3">
+        <a href="{% url 'catalog' %}" class="btn" style="background-color: #222529; border-color: #222529; color: white;">Назад в каталог</a>
+    </div>
+</div>
+{% endblock %}
