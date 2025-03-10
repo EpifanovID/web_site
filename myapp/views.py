@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Структура данных для каталога товаров
 products = [
@@ -113,7 +113,74 @@ def about(request):
 def contacts(request):
     return render(request, 'contacts.html')
 
+def task(request):
+    return render(request, 'task.html')
 
+# def task_result(request, years, century):
+#     """
+#     Обработчик для задачи.
+#     Принимает years и century как позиционные аргументы.
+#     """
+#     # Преобразуем строку с годами в список чисел
+#     year_list = list(map(int, years.split()))
+#     century = int(century)
+    
+#     # Считаем количество годов, относящихся к указанному столетию
+#     count = 0
+#     for year in year_list:
+#         if (year - 1) // 100 + 1 == century:
+#             count += 1
+    
+#     # Передаем данные в шаблон
+#     context = {
+#         'years': years,
+#         'century': century,
+#         'result': count,
+#     }
+#     return render(request, 'task_result.html', context)
+
+def task_result(request, years, century):
+    """
+    Обработчик для задачи.
+    Принимает years и century как позиционные аргументы.
+    """
+    print("\n\n\n\n")
+    print(years)  # Проверка входных данных
+    print(century)
+    print("\n\n\n\n")
+
+    try:
+        # Разделяем строку с годами по пробелам
+        year_list = years.split()
+
+        # Проверка, что список годов не пустой
+        if not year_list:
+            raise ValueError("Список годов пуст.")
+
+        # Преобразуем строки в целые числа
+        year_list = [int(year) for year in year_list]
+
+        # Проверка, что столетие является корректным целым числом
+        century = int(century)
+
+        # Считаем количество годов, относящихся к указанному столетию
+        count = 0
+        for year in year_list:
+            if (year - 1) // 100 + 1 == century:
+                count += 1
+        
+        # Передаем данные в шаблон
+        context = {
+            'years': years,
+            'century': century,
+            'result': count,
+        }
+        return render(request, 'task_result.html', context)
+    
+    except ValueError as e:
+        # Обработка ошибок, если данные некорректны
+        error_message = str(e)
+        return render(request, 'task_result.html', {'error': error_message})
 
 def author(request):
     # Данные о мне

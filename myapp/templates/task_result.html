@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Результат задачи | Магазин ПК-комплектующих{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Результат задачи</h1>
+    <div class="bg-white p-4 rounded shadow mt-4">
+        {% if error %}
+            <div class="alert alert-danger">
+                <strong>Ошибка:</strong> {{ error }}
+            </div>
+        {% else %}
+            <h3>Введенные данные:</h3>
+            <p><strong>Года:</strong> {{ years }}</p>
+            <p><strong>Столетие:</strong> {{ century }}</p>
+            <hr>
+            <h3>Результат:</h3>
+            <p>Количество годов, относящихся к {{ century }} веку: <strong>{{ result }}</strong></p>
+        {% endif %}
+    </div>
+</div>
+
+{% block back_to_top %}{% endblock %}
+{% endblock %}

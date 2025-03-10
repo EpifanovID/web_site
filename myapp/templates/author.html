@@ -20,7 +20,9 @@
         <h2 class="text-center mb-4">Я и моя образовательная программа</h2>
         <div class="row d-flex align-items-center">
             <div class="col-md-6 text-center">
-                <img src="{% static author_info.photo %}" class="img-fluid rounded-circle mb-3" alt="{{ author_info.name }}">
+                <a href="https://t.me/Epifanov_Ilia">
+                    <img src="{% static author_info.photo %}" class="img-fluid rounded-circle mb-3" alt="{{ author_info.name }}">
+                </a>
                 <h5>{{ author_info.name }}</h5>
                 <p class="lead">Email: <a href="mailto:{{ author_info.email }}">{{ author_info.email }}</a></p>
                 <p class="lead">Телефон: {{ author_info.phone }}</p>
