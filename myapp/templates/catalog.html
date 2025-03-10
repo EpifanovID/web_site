@@ -5,7 +5,14 @@
 {% block title %}Каталог товаров | Магазин ПК-комплектующих{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
+
+<!-- Навигация по странице -->
+<nav class="mb-4 text-center">
+    <a href="#section1" class="btn btn-outline-dark m-1">Каталог товаров</a>
+</nav>
+
+<!-- Каталог товаров -->
+<div id="section1" class="container mt-4">
     <h2 class="text-center mb-4">Каталог товаров</h2>
     <div class="row">
         {% for product in products %}

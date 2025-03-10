@@ -5,7 +5,17 @@
 {% block title %} Автор | Магазин ПК-комплектующих{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
+
+<!-- Навигация по странице -->
+<nav class="mb-4 text-center">
+    <a href="#section1" class="btn btn-outline-dark m-1">Я и моя образовательная программа</a>
+    <a href="#section2" class="btn btn-outline-dark m-1">Руководитель программы</a>
+    <a href="#section3" class="btn btn-outline-dark m-1">Менеджер программы</a>
+    <a href="#section4" class="btn btn-outline-dark m-1">Мои сокурсники</a>
+</nav>
+
+<!-- Я -->
+<div id="section1" class="container mt-4">
     <section class="container my-5">
         <h2 class="text-center mb-4">Я и моя образовательная программа</h2>
         <div class="row d-flex align-items-center">
@@ -23,7 +33,7 @@
     </section>
 
 <!-- Руководитель программы -->
-<section class="container my-5">
+<section id="section2" class="container my-5">
     <h2 class="text-center mb-4">Руководитель программы</h2>
     <div class="row d-flex align-items-center">
         <div class="col-md-6 text-center">
@@ -39,7 +49,7 @@
 </section>
 
 <!-- Менеджер программы -->
-<section class="container my-5">
+<section id="section3" class="container my-5">
     <h2 class="text-center mb-4">Менеджер программы</h2>
     <div class="row d-flex align-items-center">
         <div class="col-md-6 text-center">
@@ -56,7 +66,7 @@
 
 
 <!-- Сокурсники -->
-<section class="container my-5">
+<section id="section4" class="container my-5">
     <h2 class="text-center mb-4">Мои сокурсники</h2>
     <div class="row d-flex align-items-center">
         {% for classmate in classmates %}

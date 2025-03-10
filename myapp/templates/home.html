@@ -6,13 +6,20 @@
 
 {% block content %}
 
+    <!-- Навигация по странице -->
+    <nav class="mb-4 text-center">
+        <a href="#section1" class="btn btn-outline-dark m-1">Популярные категории товаров</a>
+        <a href="#section2" class="btn btn-outline-dark m-1">Почему выбирают нас?</a>
+    </nav>
+
+
     <!-- Популярные категории товаров -->
     <div class="container text-center my-4">
         <h2 class="fw-bold">Добро пожаловать в магазин комплектующих для ПК!</h2>
         <p class="lead">У нас вы найдете всё необходимое для сборки мощного и надежного компьютера.</p>
     </div>
 
-    <section class="container mt-5">
+    <section id="section1" class="container mt-5">
         <h2 class="text-center mb-4">Популярные категории товаров</h2>
         <div class="row">
             <div class="col-md-4">
@@ -21,7 +28,6 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">Видеокарты</h5>
                         <p class="card-text">Современные видеокарты для игр и работы.</p>
-                        <a href="#" class="btn" style="background-color: #222529; color: white;">Смотреть</a>
                     </div>
                 </div>
             </div>
@@ -31,7 +37,6 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">Процессоры</h5>
                         <p class="card-text">Выберите мощный процессор для вашего ПК.</p>
-                        <a href="#" class="btn" style="background-color: #222529; color: white;">Смотреть</a>
                     </div>
                 </div>
             </div>
@@ -41,7 +46,6 @@
                     <div class="card-body text-center">
                         <h5 class="card-title">Материнские платы</h5>
                         <p class="card-text">Надежные материнские платы для любой сборки.</p>
-                        <a href="#" class="btn" style="background-color: #222529; color: white;">Смотреть</a>
                     </div>
                 </div>
             </div>
@@ -50,7 +54,7 @@
     
     
     <!-- Секция преимуществ -->
-    <section class="py-5">
+    <section id="section2" class="py-5">
         <div class="container">
             <h2 class="text-center mb-4">Почему выбирают нас?</h2>
             <div class="row text-center">

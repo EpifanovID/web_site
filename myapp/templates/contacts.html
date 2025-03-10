@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Контакты | Магазин ПК-комплектующих{% endblock %}
+
+{% block content %}
+
+<!-- Навигация по странице -->
+<nav class="mb-4 text-center">
+    <a href="#section1" class="btn btn-outline-dark m-1">Контакты</a>
+</nav>
+
+<div id="section1"  class="container my-5">
+    <h2 class="text-center mb-4">Контакты</h2>
+
+    <div class="row d-flex align-items-center">
+        <!-- Контактная информация -->
+        <div class="col-md-6 text-center">
+            <h4>Наши контакты</h4>
+            <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Компьютерная, 7</p>
+            <p><i class="fas fa-phone"></i> <a href="tel:+79999999999">+7 (999) 999-99-99</a></p>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:support@pc-shop.ru">support@pc-shop.ru</a></p>
+
+            <h5 class="mt-4">Мы в соцсетях</h5>
+            <a href="https://vk.com/epifanov_ilia" class="text-dark me-3"><i class="fab fa-vk fa-2x"></i></a>
+            <a href="https://t.me/Epifanov_Ilia" class="text-dark me-3"><i class="fab fa-telegram fa-2x"></i></a>
+            <a href="https://github.com/EpifanovID" class= "text-dark me-3"><i class="fab fa-github fa-2x"></i></a>
+        </div>
+
+        <!-- Карта -->
+        <div class="col-md-6">
+            <iframe 
+                src="https://www.openstreetmap.org/export/embed.html?bbox=37.6,55.7,37.7,55.8&layer=mapnik"
+                width="100%" height="400" class="rounded shadow-sm border" 
+                style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
