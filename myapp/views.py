@@ -91,6 +91,9 @@ products = [
 # Представление каталога
 def catalog(request):
     context = {'products': products}
+    print("\n\n\n\n\n")
+    print(context)
+    print("\n\n\n\n\n")
     return render(request, 'catalog.html', context)
 
 def product(request, name):
@@ -116,38 +119,11 @@ def contacts(request):
 def task(request):
     return render(request, 'task.html')
 
-# def task_result(request, years, century):
-#     """
-#     Обработчик для задачи.
-#     Принимает years и century как позиционные аргументы.
-#     """
-#     # Преобразуем строку с годами в список чисел
-#     year_list = list(map(int, years.split()))
-#     century = int(century)
-    
-#     # Считаем количество годов, относящихся к указанному столетию
-#     count = 0
-#     for year in year_list:
-#         if (year - 1) // 100 + 1 == century:
-#             count += 1
-    
-#     # Передаем данные в шаблон
-#     context = {
-#         'years': years,
-#         'century': century,
-#         'result': count,
-#     }
-#     return render(request, 'task_result.html', context)
-
 def task_result(request, years, century):
     """
     Обработчик для задачи.
     Принимает years и century как позиционные аргументы.
     """
-    print("\n\n\n\n")
-    print(years)  # Проверка входных данных
-    print(century)
-    print("\n\n\n\n")
 
     try:
         # Разделяем строку с годами по пробелам
@@ -228,7 +204,5 @@ def author(request):
         'program_info': program_info,
         'classmates': classmates
     }
-    print("\n\n\\n\n #$%^&*()*&^%$#%^&*()*&^%$^&*()\n\n\n\n\n\n\n")
-    print(context["author_info"])
 
     return render(request, 'author.html', context)
