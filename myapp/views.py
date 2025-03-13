@@ -88,13 +88,10 @@ products = [
 ]
 
 
-# Представление каталога
 def catalog(request):
     context = {'products': products}
-    print("\n\n\n\n\n")
-    print(context)
-    print("\n\n\n\n\n")
     return render(request, 'catalog.html', context)
+
 
 def product(request, name):
     product = None
@@ -107,45 +104,36 @@ def product(request, name):
     context = {'product': product}
     return render(request, 'product.html', context)
 
+
 def home(request):
     return render(request, 'home.html')
+
 
 def about(request):
     return render(request, 'about.html')
 
+
 def contacts(request):
     return render(request, 'contacts.html')
+
 
 def task(request):
     return render(request, 'task.html')
 
+
 def task_result(request, years, century):
-    """
-    Обработчик для задачи.
-    Принимает years и century как позиционные аргументы.
-    """
-
     try:
-        # Разделяем строку с годами по пробелам
         year_list = years.split()
-
-        # Проверка, что список годов не пустой
         if not year_list:
             raise ValueError("Список годов пуст.")
 
-        # Преобразуем строки в целые числа
         year_list = [int(year) for year in year_list]
-
-        # Проверка, что столетие является корректным целым числом
         century = int(century)
-
-        # Считаем количество годов, относящихся к указанному столетию
         count = 0
         for year in year_list:
             if (year - 1) // 100 + 1 == century:
                 count += 1
-        
-        # Передаем данные в шаблон
+
         context = {
             'years': years,
             'century': century,
@@ -154,12 +142,10 @@ def task_result(request, years, century):
         return render(request, 'task_result.html', context)
     
     except ValueError as e:
-        # Обработка ошибок, если данные некорректны
         error_message = str(e)
         return render(request, 'task_result.html', {'error': error_message})
 
 def author(request):
-    # Данные о мне
     author_info = {
         "name": "Епифанов Илья Дмитриевич",
         "photo": "\myapp\images\\author\Епифанов Илья аватарка.jpeg",
@@ -167,7 +153,6 @@ def author(request):
         "phone": "+7 (926) 090-29-73"
     }
 
-    # Данные о программе
     program_info = {
         "name": "Прикладная математика",
         "description": "Программа направлена на подготовку специалистов, способных решать широкий спектр задач современной науки и техники, опираясь на самые современные достижения в области математики, физики, информационных технологий с использованием средств вычислительной техники. "
