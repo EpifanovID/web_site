@@ -23,12 +23,25 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="/">Главная</a></li>
-                <li class="nav-item"><a class="nav-link" href="/catalog/">Каталог</a></li>
-                <li class="nav-item"><a class="nav-link" href="/about/">О нас</a></li>
-                <li class="nav-item"><a class="nav-link" href="/contacts/">Контакты</a></li>
-                <li class="nav-item"><a class="nav-link" href="/author/">Автор</a></li>
-                <li class="nav-item"><a class="nav-link" href="/task/">Задача</a></li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/catalog/' %}active{% endif %}" href="/catalog/">Каталог</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/about/' %}active{% endif %}" href="/about/">О нас</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/contacts/' %}active{% endif %}" href="/contacts/">Контакты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/author/' %}active{% endif %}" href="/author/">Автор</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/task/' %}active{% endif %}" href="/task/">Задача</a>
+                </li>
+                
             </ul>
         </div>
     </div>
@@ -108,7 +121,7 @@
                 <h5>Мы в соцсетях</h5>
                 <a href="https://vk.com/epifanov_ilia" class="text-light me-3"><i class="fab fa-vk fa-2x"></i></a>
                 <a href="https://t.me/Epifanov_Ilia" class="text-light me-3"><i class="fab fa-telegram fa-2x"></i></a>
-                <a href="https://github.com/EpifanovID" class="text-light me-3"><i class="fab fa-github fa-2x"></i></a>
+                <a href="https://github.com/EpifanovID/web_site" class="text-light me-3"><i class="fab fa-github fa-2x"></i></a>
             </div>
         </div>
         <hr class="bg-light">
