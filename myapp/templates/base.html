@@ -39,7 +39,7 @@
                     <a class="nav-link {% if request.path == '/author/' %}active{% endif %}" href="/author/">Автор</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if request.path == '/task/' %}active{% endif %}" href="/task/">Задача</a>
+                    <a class="nav-link {% if request.path == '/task/' or '/task/<str:years>/<str:century>/' %}active{% endif %}" href="/task/">Задача</a>
                 </li>
                 
             </ul>
