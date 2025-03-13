@@ -122,28 +122,31 @@ def task(request):
 
 
 def task_result(request, years, century):
-    try:
-        year_list = years.split()
-        if not year_list:
-            raise ValueError("Список годов пуст.")
+    year_list = years.split()
 
-        year_list = [int(year) for year in year_list]
-        century = int(century)
-        count = 0
-        for year in year_list:
-            if (year - 1) // 100 + 1 == century:
-                count += 1
+    if not year_list:
+        return render(request, 'task_result.html', {'error': "Список годов пуст."})
 
-        context = {
-            'years': years,
-            'century': century,
-            'result': count,
-        }
-        return render(request, 'task_result.html', context)
+    if not century.isdigit():
+        return render(request, 'task_result.html', {'error': "Век должен быть числом."})
     
-    except ValueError as e:
-        error_message = str(e)
-        return render(request, 'task_result.html', {'error': error_message})
+    for year in year_list:
+        if not year.isdigit():
+            return render(request, 'task_result.html', {'error': "Список годов должен содержать только числа."})
+
+    year_list = [int(year) for year in year_list]
+    century = int(century)
+    count = 0
+    for year in year_list:
+        if (year - 1) // 100 + 1 == century:
+            count += 1
+
+    context = {
+        'years': years,
+        'century': century,
+        'result': count,
+    }
+    return render(request, 'task_result.html', context)
 
 def author(request):
     author_info = {
