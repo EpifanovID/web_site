@@ -24,6 +24,19 @@
                         {{ form.email }}
                     </div>
                 </div>
+
+                <!-- Блок рейтинга -->
+                <div class="mb-4">
+                    <label for="{{ form.rating.id_for_label }}" class="form-label">
+                        {{ form.rating.label }}
+                    </label>
+                    <div class="input-group">
+                        {{ form.rating }}
+                        <span class="input-group-text">/10</span>
+                    </div>
+                    <div class="form-text">1 - очень плохо, 10 - отлично</div>
+                    <div class="invalid-feedback">Пожалуйста, выберите оценку</div>
+                </div>
                 
                 <div class="mb-4">
                     <label for="{{ form.curriculum_opinion.id_for_label }}" class="form-label">Ваше мнение о учебном плане</label>
@@ -41,9 +54,14 @@
                     {{ form.improvements }}
                 </div>
                 
-                <div class="mb-4 form-check form-switch">
-                    {{ form.recommend }}
-                    <label class="form-check-label" for="{{ form.recommend.id_for_label }}">Я рекомендую программу "{{ program_name }}" другим</label>
+                <div class="mb-4">
+                    <label for="{{ form.recommend.id_for_label }}" class="form-label">
+                        Рекомендую программу "{{ program_name }}" другим
+                    </label>
+                    <div class="input-group">
+                        {{ form.recommend }}
+                    </div>
+                    <div class="invalid-feedback">Пожалуйста, выберите вариант</div>
                 </div>
                 
                 <button type="submit" class="btn btn-primary btn-lg w-100" style="background-color: #222529;">

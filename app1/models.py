@@ -48,6 +48,15 @@ class MathProgramFeedback(models.Model):
         help_text='Ваше впечатление от преподавательского состава',
         blank=True
     )
+
+    rating = models.PositiveSmallIntegerField(
+        'Оценка программы (1-10)',
+        validators=[MinValueValidator(1), MaxValueValidator(10)],
+        null=True,
+        blank=True,
+        help_text='Оцените программу по шкале от 1 до 10, где 10 - отлично'
+    )
+    
     
     improvements = models.TextField(
         'Что можно улучшить?',

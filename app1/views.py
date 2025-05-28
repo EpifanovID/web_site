@@ -25,7 +25,7 @@ def feedback_form(request):
             print("Форма валидна, сохраняем...")
             form.save()
             print("Данные сохранены, перенаправляем...")
-            return redirect('feedback_thanks')
+            return redirect('app1:feedback_thanks')
         else:
             # Выводим ошибки валидации
             print("Ошибки валидации формы:", form.errors)
@@ -40,3 +40,12 @@ def feedback_form(request):
 
 def feedback_thanks(request):
     return render(request, 'app1/feedback_thanks.html')
+
+def feedback_list(request):
+    # Получаем все отзывы, отсортированные по дате (новые сначала)
+    feedbacks = MathProgramFeedback.objects.all().order_by('-created_at')
+    
+    return render(request, 'app1/feedback_list.html', {
+        'feedbacks': feedbacks,
+        'title': 'Таблица отзывов'
+    })

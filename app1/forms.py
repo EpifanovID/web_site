@@ -1,15 +1,32 @@
 from django import forms
 from .models import MathProgramFeedback
 
+from django import forms
+from .models import MathProgramFeedback
+
 class ProgramFeedbackForm(forms.ModelForm):
+    # Варианты для выпадающего списка
+    RECOMMEND_CHOICES = [
+        (True, 'Да, рекомендую'),
+        (False, 'Нет, не рекомендую'),
+    ]
+    
+    recommend = forms.ChoiceField(
+        choices=RECOMMEND_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-select'}),
+        initial=True,
+        label='Я рекомендую программу "Прикладная математика" другим'
+    )
+    
     class Meta:
         model = MathProgramFeedback
         fields = [
-            'name', 'email', 
-            'curriculum_opinion', 'teaching_quality',
+            'name', 'email', 'rating', 
+            'curriculum_opinion', 'teaching_quality', 
             'improvements', 'recommend'
         ]
         widgets = {
+            'rating': forms.Select(choices=[(i, i) for i in range(1, 11)]),
             'name': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Ваше имя (необязательно)'
@@ -32,11 +49,8 @@ class ProgramFeedbackForm(forms.ModelForm):
                 'class': 'form-control',
                 'rows': 3,
                 'placeholder': 'Ваши предложения по улучшению'
-            }),
-            'recommend': forms.CheckboxInput(attrs={
-                'class': 'form-check-input'
-            }),
+            })
         }
         labels = {
-            'recommend': 'Я рекомендую программу "Прикладная математика" другим'
+            'rating': 'Оцените программу (1-10)'
         }
