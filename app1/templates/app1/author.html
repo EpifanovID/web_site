@@ -1,0 +1,87 @@
+{% extends 'app1/base.html' %}
+
+{% load static %}
+
+{% block title %}Об авторе | Моя образовательная программа{% endblock %}
+
+{% block content %}
+
+<!-- Навигация по странице -->
+<nav class="mb-4 text-center">
+    <a href="#section1" class="btn btn-outline-dark m-1">Я и моя образовательная программа</a>
+    <a href="#section2" class="btn btn-outline-dark m-1">Руководитель программы</a>
+    <a href="#section3" class="btn btn-outline-dark m-1">Менеджер программы</a>
+    <a href="#section4" class="btn btn-outline-dark m-1">Мои сокурсники</a>
+</nav>
+
+<div id="section1" class="container mt-4">
+    <!-- Я -->
+    <section class="container my-5">
+        <h2 class="text-center mb-4">Я и моя образовательная программа</h2>
+        <div class="row d-flex align-items-center">
+            <div class="col-md-6 text-center">
+                <a href="https://t.me/Epifanov_Ilia">
+                    <img src="{{ author_info.photo.url }}" class="img-fluid rounded-circle mb-3" alt="{{ author_info.name }}">
+                </a>
+                <h5>{{ author_info.name }}</h5>
+                <p class="lead">Email: <a href="mailto:{{ author_info.email }}">{{ author_info.email }}</a></p>
+                <p class="lead">Телефон: {{ author_info.phone }}</p>
+            </div>
+            <div class="col-md-6" style="text-align: justify">
+                <h5>{{ program_info.name }}</h5>
+                <p class="lead">{{ program_info.description }}</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Руководитель программы -->
+    <section id="section2" class="container my-5">
+        <h2 class="text-center mb-4">Руководитель программы</h2>
+        <div class="row d-flex align-items-center">
+            <div class="col-md-6 text-center">
+                <img src="{% static program_info.supervisor.photo %}" class="img-fluid rounded-circle mb-3" 
+                    alt="{{ program_info.supervisor.name }}" style="width: 400px; height: 400px; object-fit: cover;">
+                <h5>{{ program_info.supervisor.name }}</h5>
+                <p class="lead">Email: <a href="mailto:{{ program_info.supervisor.email }}">{{ program_info.supervisor.email }}</a></p>
+            </div>
+            <div class="col-md-6" style="text-align: justify;">
+                <p class="lead">Руководитель образовательной программы отвечает за стратегическое развитие, координацию и контроль качества учебного процесса.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Менеджер программы -->
+    <section id="section3" class="container my-5">
+        <h2 class="text-center mb-4">Менеджер программы</h2>
+        <div class="row d-flex align-items-center">
+            <div class="col-md-6 text-center">
+                <img src="{% static program_info.manager.photo %}" class="img-fluid rounded-circle mb-3" 
+                    alt="{{ program_info.manager.name }}" style="width: 400px; height: 400px; object-fit: cover;">
+                <h5>{{ program_info.manager.name }}</h5>
+                <p class="lead">Email: <a href="mailto:{{ program_info.manager.email }}">{{ program_info.manager.email }}</a></p>
+            </div>
+            <div class="col-md-6" style="text-align: justify;">
+                <p class="lead">Менеджер образовательной программы занимается организацией учебного процесса, взаимодействием с преподавателями и студентами, а также административными вопросами.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Сокурсники -->
+    <section id="section4" class="container my-5">
+        <h2 class="text-center mb-4">Мои сокурсники</h2>
+        <div class="row d-flex align-items-center">
+            {% for classmate in classmates %}
+            <div class="col-md-6 mb-4 text-center">
+                <img src="{% static classmate.photo %}" class="img-fluid rounded-circle mb-3" 
+                    alt="{{ classmate.name }}" style="width: 400px; height: 400px; object-fit: cover;">
+                <h5>{{ classmate.name }}</h5>
+                <p class="lead"><strong>Email:</strong> <a href="mailto:{{ classmate.email }}">{{ classmate.email }}</a></p>
+                <p class="lead"><strong>Телефон:</strong> <a href="tel:{{ classmate.phone }}">{{ classmate.phone }}</a></p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+</div>
+{% endblock %}
