@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import Author, ProgramSupervisor, ProgramManager, ProgramInfo, Classmate
 
-# Register your models here.
+admin.site.register(Author)
+admin.site.register(ProgramSupervisor)
+admin.site.register(ProgramManager)
+admin.site.register(ProgramInfo)
+admin.site.register(Classmate)
