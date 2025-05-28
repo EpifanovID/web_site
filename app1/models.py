@@ -1,5 +1,7 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
+# Об авторе
 class Author(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -27,3 +29,43 @@ class Classmate(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=20)
     photo = models.ImageField(upload_to='app1/images/')
+
+# Фотрма
+
+class MathProgramFeedback(models.Model):
+    
+    # Основная информация
+    name = models.CharField('Имя', max_length=100, blank=True)
+    email = models.EmailField('Email', blank=True)
+    
+    curriculum_opinion = models.TextField(
+        'Ваше мнение о учебном плане',
+        help_text='Соответствие современным требованиям, полнота курсов и т.д.'
+    )
+    
+    teaching_quality = models.TextField(
+        'Качество преподавания',
+        help_text='Ваше впечатление от преподавательского состава',
+        blank=True
+    )
+    
+    improvements = models.TextField(
+        'Что можно улучшить?',
+        help_text='Ваши предложения по улучшению программы',
+        blank=True
+    )
+    
+    recommend = models.BooleanField(
+        'Рекомендовали бы вы эту программу?',
+        default=True
+    )
+    
+    created_at = models.DateTimeField('Дата отправки', auto_now_add=True)
+    
+    class Meta:
+        verbose_name = 'Отзыв о программе'
+        verbose_name_plural = 'Отзывы о программе'
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f"Отзыв от {self.name or 'анонима'} ({self.created_at.strftime('%d.%m.%Y')})"

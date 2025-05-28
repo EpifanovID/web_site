@@ -1,0 +1,33 @@
+{% extends "app1/base.html" %}
+
+{% block content %}
+<div class="container my-5 text-center">
+    <div class="card shadow-lg border-success">
+        <div style="background-color: #222529;" class="card-header text-white" >
+            <h2 class="mb-0" >Спасибо за ваш отзыв!</h2>
+        </div>
+        
+        <div class="card-body py-5">
+            <div class="mb-4">
+                <i class="bi bi-check-circle-fill text-success" style="font-size: 5rem;"></i>
+            </div>
+            
+            <h3 class="mb-3">Ваше мнение важно для нас!</h3>
+            
+            <p class="lead mb-4">
+                Ваш отзыв о программе "Прикладная математика" успешно сохранен.<br>
+                Мы внимательно изучим все предложения и учтем их при улучшении программы.
+            </p>
+            
+            <div class="d-flex justify-content-center gap-3">
+                <a href="{% url 'feedback_form' %}" class="btn btn-primary" style="background-color: #222529;">
+                    <i  class="bi bi-pencil me-2"></i>Оставить еще один отзыв
+                </a>
+            <a href="/app1/" class="btn btn-primary" style="background-color: #222529; border: none;">
+                <i class="bi bi-house-door me-2"></i>На главную
+            </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

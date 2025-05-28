@@ -1,0 +1,56 @@
+{% extends "app1/base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="card shadow">
+        <div class="card-header text-white" style="background-color: #222529;">
+            <h2 class="mb-0">Мнение о программе "{{ program_name }}"</h2>
+        </div>
+        
+        <div class="card-body">
+            <p class="lead">Пожалуйста, поделитесь вашим мнением об образовательной программе. Это поможет нам стать лучше!</p>
+            
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ form.name.id_for_label }}" class="form-label">Ваше имя</label>
+                        {{ form.name }}
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                        {{ form.email }}
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="{{ form.curriculum_opinion.id_for_label }}" class="form-label">Ваше мнение о учебном плане</label>
+                    {{ form.curriculum_opinion }}
+                    <div class="form-text">Соответствие современным требованиям, полнота курсов и т.д.</div>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="{{ form.teaching_quality.id_for_label }}" class="form-label">Качество преподавания</label>
+                    {{ form.teaching_quality }}
+                </div>
+                
+                <div class="mb-4">
+                    <label for="{{ form.improvements.id_for_label }}" class="form-label">Что можно улучшить?</label>
+                    {{ form.improvements }}
+                </div>
+                
+                <div class="mb-4 form-check form-switch">
+                    {{ form.recommend }}
+                    <label class="form-check-label" for="{{ form.recommend.id_for_label }}">Я рекомендую программу "{{ program_name }}" другим</label>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-lg w-100" style="background-color: #222529;">
+                    <i class="bi bi-send me-2"></i>Отправить отзыв
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
