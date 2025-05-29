@@ -1,69 +1,113 @@
 {% extends "app1/base.html" %}
 
+{% block title %}{{ title }}{% endblock %}
+
 {% block content %}
-<div class="container my-5">
-    <div class="card shadow-lg">
-        <div class="card-header text-white" style="background-color: #222529;">
-            <h2 class="mb-0">Отзывы о программе "Прикладная математика"</h2>
-        </div>
-        
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>#</th>
-                            <th>Имя</th>
-                            <th>Email</th>
-                            <th>Оценка</th>
-                            <th>Рекомендует</th>
-                            <th>Дата</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for feedback in feedbacks %}
-                        <tr>
-                            <td>{{ forloop.counter }}</td>
-                            <td>{{ feedback.name|default:"Аноним" }}</td>
-                            <td>{{ feedback.email|default:"-" }}</td>
-                            <td>
-                                {% if feedback.rating %}
-                                <span class="badge bg-primary rounded-pill">
-                                    {{ feedback.rating }}/10
-                                </span>
-                                {% else %}
-                                <span class="text-muted">Не оценено</span>
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if feedback.recommend %}
-                                <span class="badge bg-success">Да</span>
-                                {% else %}
-                                <span class="badge bg-danger">Нет</span>
-                                {% endif %}
-                            </td>
-                            <td>{{ feedback.created_at|date:"d.m.Y H:i" }}</td>
-                        </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="7" class="text-center py-4">
-                                <div class="alert alert-info">
-                                    <i class="bi bi-info-circle me-2"></i>
-                                    Нет отзывов для отображения
-                                </div>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="mb-3">{{ title }}</h2>
             
-            <div class="mt-4 d-flex justify-content-between align-items-center">
-                <a href="{% url 'app1:feedback_form' %}" 
-                    class="btn btn-primary text-white" 
-                    style="background-color: #222529; border-color: #1a1d21;">
-                    <i class="bi bi-plus-circle me-2"></i>Добавить отзыв
-                </a>
+            <!-- Форма фильтрации -->
+            <form method="get" class="row g-3 mb-4">
+                <div class="col-md-3">
+                    <label for="rating" class="form-label">Фильтр по оценке</label>
+                    <select class="form-select" id="rating" name="rating">
+                        <option value="all" {% if rating_filter == 'all' %}selected{% endif %}>Все оценки</option>
+                        {% for i in "x"|ljust:"10" %}
+                            {% with num=forloop.counter %}
+                            <option value="{{ num }}" {% if rating_filter|add:0 == num %}selected{% endif %}>{{ num }}</option>
+                            {% endwith %}
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="col-md-3">
+                    <label for="recommend" class="form-label">Рекомендация</label>
+                    <select class="form-select" id="recommend" name="recommend">
+                        <option value="all" {% if recommend_filter == 'all' %}selected{% endif %}>Все</option>
+                        <option value="true" {% if recommend_filter == 'true' %}selected{% endif %}>Рекомендует</option>
+                        <option value="false" {% if recommend_filter == 'false' %}selected{% endif %}>Не рекомендует</option>
+                    </select>
+                </div>
+                
+                <div class="col-md-2 d-flex align-items-end">
+                    <button type="submit" class="btn w-100" style="background-color: #222529; color: white;">
+                        Применить
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0">Отзывы</h4>
+                        <div>
+                            <a href="{% url 'app1:feedback_list' %}" class="btn btn-sm btn-outline-secondary">Сбросить фильтры</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <a style="color: #222529;" href="?sort_by={% if current_sort == 'name' %}-name{% else %}name{% endif %}{% for key, value in request.GET.items %}{% if key != 'sort_by' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">
+                                            Имя
+                                            {% if current_sort == 'name' %}<i class="fas fa-arrow-up ms-1"></i>
+                                            {% elif current_sort == '-name' %}<i class="fas fa-arrow-down ms-1"></i>
+                                            {% endif %}
+                                        </a>
+                                    </th>
+                                    <th>Email</th>
+                                    <th>
+                                        <a style="color: #222529;" href="?sort_by={% if current_sort == 'rating' %}-rating{% else %}rating{% endif %}{% for key, value in request.GET.items %}{% if key != 'sort_by' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">
+                                            Оценка
+                                            {% if current_sort == 'rating' %}<i class="fas fa-arrow-up ms-1"></i>
+                                            {% elif current_sort == '-rating' %}<i class="fas fa-arrow-down ms-1"></i>
+                                            {% endif %}
+                                        </a>
+                                    </th>
+                                    <th>Рекомендует</th>
+                                    <th>
+                                        <a style="color: #222529;" href="?sort_by={% if current_sort == '-created_at' %}created_at{% else %}-created_at{% endif %}{% for key, value in request.GET.items %}{% if key != 'sort_by' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">
+                                            Дата
+                                            {% if current_sort == '-created_at' or not current_sort %}<i class="fas fa-arrow-down ms-1"></i>
+                                            {% elif current_sort == 'created_at' %}<i class="fas fa-arrow-up ms-1"></i>
+                                            {% endif %}
+                                        </a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for feedback in feedbacks %}
+                                <tr>
+                                    <td>{{ feedback.name|default:"Аноним" }}</td>
+                                    <td>{{ feedback.email|default:"Не указан" }}</td>
+                                    <td>{{ feedback.rating|default:"-" }}</td>
+                                    <td>
+                                        {% if feedback.recommend %}
+                                        <span class="badge bg-success">Да</span>
+                                        {% else %}
+                                        <span class="badge bg-danger">Нет</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ feedback.created_at|date:"d.m.Y H:i" }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="6" class="text-center">Нет отзывов, соответствующих фильтрам</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
