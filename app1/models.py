@@ -6,7 +6,7 @@ class Author(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     phone = models.CharField(max_length=20)
-    photo = models.ImageField(upload_to='app1/static/app1/images/')
+    photo = models.ImageField(upload_to='app1/images/')
 
 class ProgramSupervisor(models.Model):
     name = models.CharField(max_length=100)
