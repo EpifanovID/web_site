@@ -1,0 +1,106 @@
+{% extends "app1/base.html" %}
+
+{% block title %}Статистика отзывов{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <h2 class="display-5 mb-3">Статистика отзывов</h2>
+            <p class="lead text-muted">Анализ оценок и рекомендаций программы</p>
+        </div>
+    </div>
+
+    <!-- Основные метрики -->
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center py-4">
+                    <h3 class="card-title">{{ total_feedbacks }}</h3>
+                    <p class="card-text text-muted">Всего отзывов</p>
+                    <i class="fas fa-comments fa-2x text-muted mt-2"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center py-4">
+                    <h3 class="card-title">{{ avg_rating|floatformat:1 }}/10</h3>
+                    <p class="card-text text-muted">Средняя оценка</p>
+                    <i class="fas fa-star fa-2x text-warning mt-2"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center py-4">
+                    <h3 class="card-title">{{ recommend_percent|floatformat:0 }}%</h3>
+                    <p class="card-text text-muted">Рекомендуют</p>
+                    <i class="fas fa-thumbs-up fa-2x text-success mt-2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Распределение оценок -->
+    <div class="card border-0 shadow-sm mb-5">
+        <div class="card-header bg-dark text-white">
+            <h4 class="mb-0"><i class="fas fa-chart-bar me-2"></i>Распределение оценок</h4>
+        </div>
+        <div class="card-body">
+            {% if rating_counts %}
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead>
+                        <tr class="table-light">
+                            <th>Оценка</th>
+                            <th>Количество</th>
+                            <th>Процент</th>
+                            <th class="w-50">График</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in rating_counts %}
+                        <tr>
+                            <td>{{ item.rating }}</td>
+                            <td>{{ item.count }}</td>
+                            <td>
+                                {% if total_feedbacks > 0 %}
+                                    {% widthratio item.count total_feedbacks 100 as percent %}
+                                    {{ percent|floatformat:1 }}%
+                                {% else %}
+                                    0.0%
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="alert alert-info mb-0">Нет данных для отображения</div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Дополнительные действия -->
+    <div class="d-flex justify-content-between">
+        <a href="{% url 'app1:feedback_list' %}" class="btn btn-outline-dark">
+            <i class="fas fa-list me-2"></i>Все отзывы
+        </a>
+        <a href="{% url 'app1:feedback_form' %}" class="btn btn-dark">
+            <i class="fas fa-plus me-2"></i>Оставить отзыв
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block back_to_top %}
+<div class="text-center mt-4">
+    <a href="#" class="btn" style="background-color: #222529; color: white;">
+        <i ></i>К началу страницы
+    </a>
+</div>
+{% endblock %}
