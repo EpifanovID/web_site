@@ -1,0 +1,85 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Моя образовательная программа{% endblock %}</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="bg-light">
+    
+<!-- Навигация -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Образовательный путь</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/app2/' %}active{% endif %}" href="/app2/">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/app2/about_me/' %}active{% endif %}" href="/app2/about_me/">Я</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/app2/program/' %}active{% endif %}" href="/app2/program/">Программа</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/app2/classmates/' %}active{% endif %}" href="/app2/classmates/">Однокурсники</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if request.path == '/app2/management/' %}active{% endif %}" href="/app2/management/">Менеджеры</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Контент страницы -->
+<main class="container py-4">
+    {% block content %}
+    {% endblock %}
+</main>
+
+<!-- Кнопка "К началу страницы" -->
+{% block back_to_top %}
+<div class="text-center mt-4">
+    <a href="#" class="btn" style="background-color: #222529; color: white;">К началу страницы</a>
+</div>
+{% endblock %}
+
+<!-- Футер -->
+<footer class="bg-dark text-light py-5 mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <h5>Контакты</h5>
+                <p>НИУ ВШЭ<br> Факультет: МИЭМ<br>ОП: Прикладной математики</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <h5>Рабочая почта</h5>
+                <ul class="list-unstyled">
+                    <p>✉ idepifanov@edu.hse.ru</p>
+                </ul>
+            </div>
+            <div class="col-md-4 text-center">
+                <h5>Связь</h5>
+                <a href="https://vk.com/epifanov_ilia" class="text-light me-3"><i class="fab fa-vk fa-2x"></i></a>
+                <a href="https://t.me/Epifanov_Ilia" class="text-light me-3"><i class="fab fa-telegram fa-2x"></i></a>
+                <a href="https://github.com/EpifanovID/web_site" class="text-light me-3"><i class="fab fa-github fa-2x"></i></a>
+            </div>
+        </div>
+        <hr class="bg-light">
+    </div>
+</footer>
+
+</body>
+</html>

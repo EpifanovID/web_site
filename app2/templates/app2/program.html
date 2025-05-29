@@ -1,0 +1,53 @@
+{% extends "app2/base.html" %}
+
+{% block title %}Моя образовательная программа{% endblock %}
+
+{% block content %}
+<div class="card shadow mb-4">
+    <div class="card-header bg-primary text-white">
+        <h2 class="mb-0">{{ program.name }}</h2>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h4><i class="fas fa-info-circle text-primary me-2"></i>Описание</h4>
+                <p>{{ program.description }}</p>
+                
+                <a href="{{ program.link }}" class="btn btn-outline-primary mb-3" target="_blank">
+                    <i class="fas fa-external-link-alt me-2"></i>Официальная страница программы
+                </a>
+                
+                <h4 class="mt-4"><i class="fas fa-graduation-cap text-primary me-2"></i>Чему я научусь</h4>
+                <p>{{ program.what_will_i_learn }}</p>
+            </div>
+            <div class="col-md-6">
+                <h4><i class="fas fa-star text-primary me-2"></i>Преимущества</h4>
+                <p>{{ program.advantages }}</p>
+                
+                <h4 class="mt-4"><i class="fas fa-briefcase text-primary me-2"></i>Перспективы</h4>
+                <p>{{ program.prospects }}</p>
+            </div>
+        </div>
+        
+        <hr>
+        
+        <h4 class="text-center mb-4">Ключевые дисциплины</h4>
+        <div class="row">
+            <ul>
+                {% for subject in subjects %}
+                    <li>{{ subject }}</li>
+                {% endfor %}
+            </ul>
+            <div class="col-md-4 mb-3">
+                <div class="card border-primary h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-book fa-2x text-primary mb-3"></i>
+                        <h5>{{ subject }}</h5>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}
